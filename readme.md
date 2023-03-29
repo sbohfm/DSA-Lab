@@ -11,10 +11,9 @@ This field of CS is, in a basic form, the internalization and sharpening of the 
 
 Feel free to explore, but keep in mind that this is the most \*a work in progress\* you've ever seen.
 
+### How things works in this repo?
 
-### How things works in this repl?
-
-Since someone else that is not me (you) can explore this repl, it should also be a good idea to record useful notes that someone could take advantage of. That's why **this is not just a collection of handy algorithms** but also a *documented* one. Every folder will be guided in a way it doesn't get too technical or clumsy (without prior warning), and as such, will try to maintaing this simple pattern:
+Since someone else that is not me (you) can explore this repo, it should also be a good idea to record useful notes that someone could take advantage of. That's why **this is not just a collection of handy algorithms** but also a *documented* one. Every folder will be guided in a way it doesn't get too technical or clumsy (without prior warning), and as such, will try to maintaing this simple pattern:
 
 ```
 root-folder

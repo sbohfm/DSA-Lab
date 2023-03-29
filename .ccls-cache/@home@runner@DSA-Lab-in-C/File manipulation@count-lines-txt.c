@@ -38,7 +38,7 @@ int main(int argc,char** argv) {
 
   fclose(file);
 
-  printf("%d", size);
+  printf("This file have %d lines.\n", size);
   
   return 0;
   
