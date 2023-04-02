@@ -9,15 +9,15 @@ int compara(const void *e1, const void *e2)
 
 int sort_index(FILE *f) {
 	Indexed *e;         // Endereco auxiliar
-	long posicao = 0;   // Posicao do registro no arquivo
-    long qtd;           // Quantidade de registros
-    int chunk = 100;    // Tamanho do chunk
+  long pos;           // Posicao de registros
+  long qtd;           // Quantidade de registros
+  int chunk = 100;    // Tamanho do chunk
 
-	fseek(f,0,SEEK_END);
-	posicao = ftell(f);
-	qtd = posicao/sizeof(Indexed);
-	e = malloc(chunk * sizeof(Indexed));
-    rewind(f);
+  fseek(f,0,SEEK_END);
+	pos = ftell(f);
+  qtd = pos/sizeof(pos);
+	e = malloc(qtd * sizeof(Indexed));
+  rewind(f);
 
 	if(e == NULL) { // Verifica se a memoria foi alocada
 		printf("Erro: Nao consegui alocar a memoria\n");
@@ -25,21 +25,22 @@ int sort_index(FILE *f) {
 		return -1;
 	}
 
-	while(fread(e,sizeof(Indexed),chunk,f) >= chunk) {
+	while(fread(e,sizeof(Indexed),1,f) == 1)
+  {
 		// Reading...
 	}
-    printf("Done!\n");
+  printf("Read = OK\n");
 
 	fclose(f);
 
 	qsort(e,qtd,sizeof(Indexed),compara); // Ordena o arquivo de indices
-	printf("Ordenado = OK\n");
+	printf("Ordered = OK\n");
 
 	f = fopen("if_ordered.dat","wb");   // Abre o arquivo de indices ordenado
 	fwrite(e,sizeof(Indexed),qtd,f);    // Escreve o arquivo de indices ordenado
 	fclose(f);                          // Fecha o arquivo de indices ordenado
 
-	printf("Escrito = OK\n");
+	printf("Written = OK\n");
 	free(e);
 
 	return 0;
@@ -51,24 +52,23 @@ int create_index(FILE *f)
 	Indexed *e;         // Endereco auxiliar
 	Endereco *e2;       // Endereco auxiliar
 	int count;          // Contador de registros
-    int chunk = 100;    // Tamanho do chunk
+  int chunk = 100;    // Tamanho do chunk
 
-    e = malloc(sizeof(Indexed));
-    e2 = malloc(sizeof(Endereco));
+  e = malloc(sizeof(Indexed));
+  e2 = malloc(sizeof(Endereco));
 
 	count = 0;
 	f_index = fopen("if.dat","wb");
-	while(fread(e,sizeof(Indexed),chunk,f) >= chunk)
-	{
-        printf("a");
+	while(fread(e2,sizeof(Indexed),1,f) == 1)
+  {
 		strcpy(e->cep,e2->cep);
 		e->index = count;
 		fwrite(e,sizeof(Indexed),1,f_index);
 		count++;
 	}
 
-    free(e);
-    free(e2);
+  free(e);
+  free(e2);
 	fclose(f_index);
 	return (count+1); // Retorna a quantidade de registros
 }
