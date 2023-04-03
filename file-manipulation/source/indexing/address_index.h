@@ -1,7 +1,7 @@
 #ifndef ADDRESS_INDEX_H
 #define ADDRESS_INDEX_H
 
-#include <stdio.h>
+#include <stdio.h> 			// printf, scanf, fopen, fclose
 
 typedef struct _Endereco Endereco;
 typedef struct _Indexed Indexed;
@@ -23,10 +23,14 @@ struct _Indexed
 	int index;
 };
 
-int compara(const void *e1, const void *e2);
+int compare(const void *e1, const void *e2);
 
 int sort_index(FILE *f);
 
 int create_index(FILE *f);
+
+int search_index(FILE *f, char *cep, char mode);
+
+int search_data(FILE *f, int index);
 
 #endif /* ADDRESS_INDEX_H */
